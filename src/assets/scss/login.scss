@@ -1,5 +1,6 @@
 .login_container {
     .login_input {
+        // border: 2px solid #003FB9;
         background-color: #FFFFFF;
     }
 
@@ -51,11 +52,14 @@
 
     .sign_in_button {
         margin-top: 20px;
+        font-size: 24px;
         height: 61px;
         background: #003FB9 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
         border-radius: 4px;
         opacity: 1;
+        text-transform: capitalize !important;
+        margin-bottom: 196px;
     }
 
     .footer {
@@ -65,12 +69,14 @@
         width: 100%;
         bottom: -55%;
         left: 0%;
+        margin-bottom: 5px;
 
         .footer_content {
             display: flex;
             padding: 0% 10%;
             justify-content: space-between;
             align-items: center;
+            font-size: 20px;
 
             .powered_by {
                 display: flex;
@@ -132,6 +138,7 @@
         flex-direction: column;
         align-items: flex-start;
         text-align: center;
+        width: 100%;
 
         .powered_by {
             font-size: 14px;

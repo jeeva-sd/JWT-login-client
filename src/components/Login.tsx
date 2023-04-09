@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, InputAdornment, CircularProgress } from '@mui/material';
+import { TextField, Button, Container, InputAdornment, CircularProgress, createTheme, ThemeProvider } from '@mui/material';
 import { getAuthenticate, getToken, setAuthenticate, setToken } from '../state/cookies';
 import { loginRequest } from '../state/duck/user';
 import { AppState, dispatch } from '../state/store';
@@ -61,103 +61,114 @@ export default function SignIn() {
 
     const handleTogglePassword = () => setShowPassword(!showPassword);
 
+    const theme = createTheme({
+        palette: {
+            secondary: {
+                main: '#003FB9'
+            }
+        }
+    });
+
     return (
-        <Container component="main" maxWidth="xl" className='login_container'>
-            <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xl" className='login_container'>
+                <CssBaseline />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
 
-                <div className='avatar'>
-                    <img className='user_avatar' src={user_avatar} alt='user_avatar' />
-                </div>
-
-                <Typography className='welcome' component="h1" variant="h5">
-                    Welcome!
-                </Typography>
-                <Typography className='sub-text' component="span" variant="caption">
-                    Let's connect to your workspace. Please enter your email to continue.
-                </Typography>
-
-                <Box component="form" onSubmit={(event) => handleLogin(event)} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                        value={userName || ''}
-                        className='login_input'
-                        error={Boolean(error?.email)}
-                        helperText={error?.email}
-                        style={{ borderColor: '2px solid black' }}
-                        sx={{ borderColor: '2px solid #0000' }}
-                        onChange={(e) => {
-                            setUserName(e?.target?.value);
-                            setError(initialError)
-                        }}
-                    />
-
-                    <TextField
-                        label="Password"
-                        required
-                        type={showPassword ? 'text' : 'password'}
-                        value={password || ''}
-                        onChange={(e) => {
-                            setPassword(e?.target?.value);
-                            setError(initialError);
-                        }}
-                        fullWidth
-                        margin="normal"
-                        error={Boolean(error?.password)}
-                        helperText={error?.password}
-                        className='login_input'
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <img
-                                        alt="password"
-                                        style={{ cursor: 'pointer' }} src={!showPassword ? hidePassword : viewPassword}
-                                        onClick={handleTogglePassword} />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-
-                    <div className='forget_password'>
-                        <Link href="#" className='forget_password'>
-                            Forgot password?
-                        </Link>
+                    <div className='avatar'>
+                        <img className='user_avatar' src={user_avatar} alt='user_avatar' />
                     </div>
 
-                    <Button
-                        type="submit"
-                        className='sign_in_button'
-                        fullWidth
-                        variant="contained"
-                    >
-                        {isRequesting ? <CircularProgress sx={{ color: 'white', height: '32px', width: '32px' }} color="inherit" /> : 'Sign In'}
-                    </Button>
-                </Box>
-            </Box>
+                    <Typography className='welcome' component="h1" variant="h5">
+                        Welcome!
+                    </Typography>
+                    <Typography className='sub-text' component="span" variant="caption">
+                        Let's connect to your workspace. Please enter your email to continue.
+                    </Typography>
 
-            <Box className='footer'>
-                <div className='footer_content'>
-                    <span className='powered_by'><span>Powered by</span> <img className='zaperon_logo' src={zaperon_logo} alt='zaperon_logo' /></span>
-                    <span className='footer_right'>
-                        <span className='footer_right_span'>Need Help?</span>
-                        <span className='footer_right_span'>Privacy Policy <span style={{ color: '#A2A2A2' }}>&</span> Terms</span>
-                    </span>
-                </div>
-            </Box>
-        </Container>
+                    <Box component="form" onSubmit={(event) => handleLogin(event)} noValidate sx={{ mt: 1 }}>
+                        <TextField
+                            color="secondary"
+                            margin="normal"
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                            value={userName || ''}
+                            className='login_input'
+                            error={Boolean(error?.email)}
+                            helperText={error?.email}
+                            style={{ borderColor: '2px solid black' }}
+                            sx={{ borderColor: '2px solid #0000' }}
+                            onChange={(e) => {
+                                setUserName(e?.target?.value);
+                                setError(initialError)
+                            }}
+                        />
+
+                        <TextField
+                            sx={{ borderRadius: 2 }}
+                            color="secondary"
+                            label="Password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password || ''}
+                            onChange={(e) => {
+                                setPassword(e?.target?.value);
+                                setError(initialError);
+                            }}
+                            fullWidth
+                            margin="normal"
+                            error={Boolean(error?.password)}
+                            helperText={error?.password}
+                            className='login_input'
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <img
+                                            alt="password"
+                                            style={{ cursor: 'pointer' }} src={!showPassword ? hidePassword : viewPassword}
+                                            onClick={handleTogglePassword} />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+
+                        <div className='forget_password'>
+                            <Link href="#" className='forget_password'>
+                                Forgot password?
+                            </Link>
+                        </div>
+
+                        <Button
+                            type="submit"
+                            className='sign_in_button'
+                            fullWidth
+                            variant="contained"
+                        >
+                            {isRequesting ? <CircularProgress sx={{ color: 'white', height: '32px', width: '32px' }} color="inherit" /> : 'Sign In'}
+                        </Button>
+                    </Box>
+                </Box>
+
+                <Box className='footer'>
+                    <div className='footer_content'>
+                        <span className='powered_by'><span>Powered by</span> <img className='zaperon_logo' src={zaperon_logo} alt='zaperon_logo' /></span>
+                        <span className='footer_right'>
+                            <span className='footer_right_span'>Need Help?</span>
+                            <span className='footer_right_span'>Privacy Policy <span style={{ color: '#A2A2A2' }}>&</span> Terms</span>
+                        </span>
+                    </div>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }

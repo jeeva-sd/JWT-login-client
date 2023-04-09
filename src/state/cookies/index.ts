@@ -38,4 +38,6 @@ export const isAuthenticate = () => {
 export const clearCookies = () => {
     setAuthenticate(false);
     Cookies.remove('token');
+    Cookies.remove('authenticate');
+    Cookies.remove('userInfo');
 }

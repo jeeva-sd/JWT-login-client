@@ -1,0 +1,158 @@
+.login_container {
+    .login_input {
+        background-color: #FFFFFF;
+    }
+
+    .avatar {
+        background-color: #EFEFEF;
+        border-radius: 50%;
+        padding: 5px;
+        height: 200px;
+        width: 200px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user_avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .welcome {
+        font-size: 48px;
+        color: #0B3558;
+        font-weight: bold;
+        font-family: normal normal bold 48px/65px Open Sans;
+        letter-spacing: 0px;
+        color: #0B3558;
+        opacity: 1;
+    }
+
+    .sub-text {
+        width: 336px;
+        font-size: 20px;
+        text-align: center;
+        font-style: normal, Open Sans, Regular;
+        letter-spacing: 0px;
+        color: #0B3558;
+        opacity: 1;
+    }
+
+    .forget_password {
+        text-align: right;
+        font-style: normal, Open Sans, Regular;
+        letter-spacing: 0px;
+        color: #003FB9;
+        opacity: 1;
+        text-decoration: none;
+    }
+
+    .sign_in_button {
+        margin-top: 20px;
+        height: 61px;
+        background: #003FB9 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 4px;
+        opacity: 1;
+    }
+
+    .footer {
+        overflow: auto;
+        margin-top: 5% !important;
+        position: relative;
+        width: 100%;
+        bottom: -55%;
+        left: 0%;
+
+        .footer_content {
+            display: flex;
+            padding: 0% 10%;
+            justify-content: space-between;
+            align-items: center;
+
+            .powered_by {
+                display: flex;
+                align-items: center;
+                color: #728391;
+                gap: 5px;
+            }
+
+            .zaperon_logo {
+                height: auto;
+                padding-left: 10px;
+            }
+
+            .footer_right_span {
+                color: #003FB9;
+                padding: 0px 15px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        position: relative;
+        width: 100%;
+        bottom: -55%;
+        left: 0%;
+    }
+
+    .footer_content {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .powered_by {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .zaperon_logo {
+            padding-left: 0;
+        }
+
+        .footer_right_span {
+            margin-top: 10px;
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .footer {
+        overflow: auto;
+        margin-top: 20px !important;
+    }
+
+    .footer_content {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+
+        .powered_by {
+            font-size: 14px;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .zaperon_logo {
+            width: 50%;
+            padding-left: 0;
+        }
+
+        .footer_right_span {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            width: auto;
+            margin-top: 10px;
+            padding: 0;
+        }
+    }
+}
